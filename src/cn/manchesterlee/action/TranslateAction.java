@@ -2,8 +2,10 @@ package cn.manchesterlee.action;
 
 import cn.manchesterlee.net.Callback;
 import cn.manchesterlee.net.HttpUtils;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.intellij.notification.Notification;
+import com.intellij.notification.NotificationType;
+import com.intellij.notification.Notifications;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.PlatformDataKeys;
@@ -34,8 +36,9 @@ public class TranslateAction extends AnAction {
     private static final String API_TRANSLATE = "http://translate.google.cn/translate_a/single?client=gtx&dt=t&dj=1&ie=UTF-8&sl=auto&tl=zh_CN&q=";
     private ObjectMapper objectMapper = new ObjectMapper();
     private static final List<String> INVALID_CHARACTERS = Collections.unmodifiableList(
-            Arrays.asList( "/\\*\\*", "\\*", "\n")
+            Arrays.asList("/\\*\\*", "\\*", "\n")
     );
+    private Notification notification;
 
 
     @Override
@@ -55,10 +58,12 @@ public class TranslateAction extends AnAction {
     }
 
     private void translate(Editor editor, String text) {
+        showNotification("Translating...", NotificationType.INFORMATION);
         try {
             HttpUtils.call(API_TRANSLATE + URLEncoder.encode(text, "UTF-8"), "GET", new Callback() {
                 @Override
                 public void onSuccess(String result) {
+                    closeNotification(notification);
                     try {
                         Map map = objectMapper.readValue(result, Map.class);
                         if (map.containsKey("sentences")) {
@@ -72,22 +77,20 @@ public class TranslateAction extends AnAction {
                                     }
                                 }
                                 showPopupWindow(editor, sb.toString());
-                                return;
                             }
                         }
-                        showPopupWindow(editor, "解析失败");
-                    } catch (Throwable e) {
-                        showPopupWindow(editor, "解析失败");
+                    } catch (Throwable ignore) {
+                        showNotification("Translate failed", NotificationType.ERROR);
                     }
                 }
 
                 @Override
                 public void onFailure(String message) {
-                    showPopupWindow(editor, "翻译失败：" + message);
+                    showNotification("Translate failed", NotificationType.ERROR);
                 }
             });
         } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+            showNotification("Translate failed", NotificationType.ERROR);
         }
     }
 
@@ -99,6 +102,17 @@ public class TranslateAction extends AnAction {
                         .setHideOnAction(true)
                         .createBalloon()
                         .show(JBPopupFactory.getInstance().guessBestPopupLocation(editor), Balloon.Position.below));
+    }
+
+    private void showNotification(String content, NotificationType type) {
+        notification = new Notification("translator", "Google Translator", content, type);
+        Notifications.Bus.notify(notification);
+    }
+
+    private void closeNotification(Notification notification) {
+        if (notification != null && !notification.isExpired()) {
+            notification.expire();
+        }
     }
 
     private String filterCharacter(String text) {

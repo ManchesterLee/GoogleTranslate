@@ -18,7 +18,6 @@ public class HttpUtils {
     private static final ExecutorService SERVICE = Executors.newSingleThreadExecutor();
 
     public static void call(String url, String method, Callback callback) {
-        System.out.println(url);
         SERVICE.execute(() -> {
             try {
                 HttpURLConnection connection = getConnection(url, method);
