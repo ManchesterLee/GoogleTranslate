@@ -2,6 +2,7 @@ package cn.manchesterlee.action;
 
 import cn.manchesterlee.net.Callback;
 import cn.manchesterlee.net.HttpUtils;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
@@ -14,7 +15,6 @@ import com.intellij.openapi.ui.popup.JBPopupFactory;
 import com.intellij.ui.JBColor;
 
 import java.awt.*;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Arrays;
@@ -59,7 +59,6 @@ public class TranslateAction extends AnAction {
             HttpUtils.call(API_TRANSLATE + URLEncoder.encode(text, "UTF-8"), "GET", new Callback() {
                 @Override
                 public void onSuccess(String result) {
-                    //System.out.println(result);
                     try {
                         Map map = objectMapper.readValue(result, Map.class);
                         if (map.containsKey("sentences")) {
@@ -77,7 +76,7 @@ public class TranslateAction extends AnAction {
                             }
                         }
                         showPopupWindow(editor, "解析失败");
-                    } catch (IOException e) {
+                    } catch (Throwable e) {
                         showPopupWindow(editor, "解析失败");
                     }
                 }
