@@ -1,0 +1,1 @@
+# Translator plugin for IntelliJ IDEA base on Google Translator
