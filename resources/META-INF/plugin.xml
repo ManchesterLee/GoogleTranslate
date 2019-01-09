@@ -1,8 +1,8 @@
 <idea-plugin>
     <id>cn.manchesterlee.plugin.translator</id>
     <name>Google Translator</name>
-    <version>0.0.1</version>
-    <vendor email="man.chester.lee.cn@gmail.com" url="manchesterlee.github.io">Manchester Lee</vendor>
+    <version>0.0.2</version>
+    <vendor email="man.chester.lee.cn@gmail.com" url="https://manchesterlee.github.io">Manchester Lee</vendor>
 
     <description><![CDATA[
       <p>基于Google Translator的翻译插件</p>
