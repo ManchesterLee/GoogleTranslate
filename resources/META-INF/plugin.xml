@@ -1,17 +1,20 @@
 <idea-plugin>
     <id>cn.manchesterlee.plugin.translator</id>
     <name>Google Translator</name>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
     <vendor email="man.chester.lee.cn@gmail.com" url="https://manchesterlee.github.io">Manchester Lee</vendor>
 
     <description><![CDATA[
       <p>基于Google Translator的翻译插件</p>
       <p><strong>Github</strong> <a href="https://github.com/ManchesterLee/Google-Translator---Intellij-IDEA">https://github.com/ManchesterLee/Google-Translator---Intellij-IDEA</a></p>
+      <p>选中文本，ALT + T（默认快捷键）</p>
     ]]></description>
 
     <change-notes><![CDATA[
       <ul>
-        <li>v1.0 英翻中</li>
+        <li>v0.0.1 英翻中</li>
+        <li>v0.0.2 修改注释</li>
+        <li>v0.0.3 修正版本号</li>
       </ul>
     ]]>
     </change-notes>
