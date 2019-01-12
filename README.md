@@ -7,6 +7,6 @@
 ## 安装
 - <kbd>Preferences(Settings)</kbd> > <kbd>Plugins</kbd> > <kbd>Browse repositories...</kbd> > <kbd>搜索并找到"Google Translator"</kbd> > <kbd>Install Plugin</kbd>
 
-##使用
-选中目标文本，（默认快捷键）`ALT + T`翻译文本
+## 使用
+选中目标文本，（默认快捷键）`ALT + T`翻译文本
 
