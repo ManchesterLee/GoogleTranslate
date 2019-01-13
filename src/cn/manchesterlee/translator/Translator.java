@@ -1,4 +1,4 @@
-package cn.manchesterlee.translate;
+package cn.manchesterlee.translator;
 
 import cn.manchesterlee.domain.TranslateResults;
 
