@@ -6,15 +6,15 @@
 
     <description><![CDATA[
       <p>Translator plugin base on <a href="https://translate.google.cn">Google Translate</a>.</p>
-      <p><strong>Github</strong> <a href="https://github.com/ManchesterLee/Google-Translator---Intellij-IDEA">https://github.com/ManchesterLee/Google-Translator---Intellij-IDEA</a></p>
-      <p>Select words or sentences，then press ALT + T</p>
+      <p><strong>Github</strong> <a href="https://github.com/ManchesterLee/GoogleTranslate">GoogleTranslate</a></p>
+      <p><strong>Select words or sentences，then press ALT + T</strong></p>
     ]]></description>
 
     <change-notes><![CDATA[
       <ul>
-        <li>v0.0.1 英翻中</li>
-        <li>v0.0.2 修改注释</li>
-        <li>v0.0.3 </li>
+        <li>v0.0.1 English to Chinese</li>
+        <li>v0.0.2 Update vendor url</li>
+        <li>v0.0.3 Add right-click Translate</li>
       </ul>
     ]]>
     </change-notes>
@@ -36,6 +36,7 @@
         <!-- Add your actions here -->
         <action id="Translate" class="cn.manchesterlee.action.TranslateAction" text="Translator">
             <add-to-group group-id="EditMenu" anchor="first"/>
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
             <keyboard-shortcut keymap="$default" first-keystroke="alt t"/>
         </action>
     </actions>
