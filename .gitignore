@@ -1,4 +1,5 @@
 out/
+.idea/
 *.iml
 *.jar
 *.zip
