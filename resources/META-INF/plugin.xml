@@ -34,7 +34,7 @@
 
     <actions>
         <!-- Add your actions here -->
-        <action id="Translate" class="cn.manchesterlee.action.TranslateAction" text="Translator">
+        <action id="Translate" class="cn.manchesterlee.action.TranslateAction" text="Translate">
             <add-to-group group-id="EditMenu" anchor="first"/>
             <add-to-group group-id="EditorPopupMenu" anchor="first"/>
             <keyboard-shortcut keymap="$default" first-keystroke="alt t"/>

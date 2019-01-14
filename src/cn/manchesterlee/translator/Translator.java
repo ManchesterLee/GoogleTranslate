@@ -1,7 +1,5 @@
 package cn.manchesterlee.translator;
 
-import cn.manchesterlee.domain.TranslateResults;
-
 /**
  * Translator
  *
@@ -11,6 +9,6 @@ import cn.manchesterlee.domain.TranslateResults;
  */
 public interface Translator {
 
-    TranslateResults translate(String sourceLang, String targetLang, String text) throws Exception;
+    String translate(String srcLang, String text) throws Exception;
 
 }
